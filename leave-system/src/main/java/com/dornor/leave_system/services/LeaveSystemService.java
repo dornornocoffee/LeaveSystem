@@ -2,6 +2,7 @@ package com.dornor.leave_system.services;
 
 import com.dornor.leave_system.entity.LeaveBalances;
 import com.dornor.leave_system.entity.LeaveRequest;
+import com.dornor.leave_system.entity.LeaveTypes;
 import com.dornor.leave_system.entity.Users;
 import com.dornor.leave_system.repository.BalanceRepository;
 import com.dornor.leave_system.repository.RequestRepository;
@@ -35,6 +36,14 @@ public class LeaveSystemService {
 
     public void saveLeave(LeaveRequest leaveRequest) {
         requestRepository.save(leaveRequest);
+    }
+
+    public void saveLeaveType(LeaveTypes leaveTypes) {
+        typeRepository.save(leaveTypes);
+    }
+
+    public void saveUsers(Users users) {
+        userRepository.save(users);
     }
 
 }
