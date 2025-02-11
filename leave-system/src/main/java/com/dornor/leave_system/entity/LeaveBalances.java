@@ -10,21 +10,23 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Leave_balances {
+public class LeaveBalances {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id", nullable = false)
-    private String user_id;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private Users user;
 
-    @Column(name = "leave_type_id", nullable = false)
-    private String leaveType_id;
+    @ManyToOne
+    @JoinColumn(name = "leave_type_id", nullable = false)
+    private LeaveTypes leaveType;
 
-    @Column(name = "year",nullable = false)
+    @Column(nullable = false)
     private Integer year;
 
-    @Column(name = "remaining_days",nullable = false)
+    @Column(name = "remaining_days", nullable = false)
     private Integer remainingDays;
 }

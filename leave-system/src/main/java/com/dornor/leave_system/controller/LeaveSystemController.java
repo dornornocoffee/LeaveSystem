@@ -1,6 +1,6 @@
 package com.dornor.leave_system.controller;
 
-import com.dornor.leave_system.entity.Leave_request;
+import com.dornor.leave_system.entity.LeaveRequest;
 import com.dornor.leave_system.services.LeaveSystemService;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,13 +19,13 @@ public class LeaveSystemController {
     }
 
     @PostMapping("/leave-requests")
-    public void createRequests(@RequestBody Leave_request leave_request) {
+    public void createRequests(@RequestBody LeaveRequest leave_request) {
 
     }
 
     //for admin
     @PutMapping("/leave-requests/{id}")
-    public void updateRequests(@PathVariable int id, @RequestBody Leave_request leave_request) {
+    public void updateRequests(@PathVariable int id, @RequestBody LeaveRequest leave_request) {
 
     }
 
