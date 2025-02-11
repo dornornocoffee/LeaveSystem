@@ -11,6 +11,7 @@ import com.dornor.leave_system.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LeaveSystemService {
@@ -44,6 +45,19 @@ public class LeaveSystemService {
 
     public void saveUsers(Users users) {
         userRepository.save(users);
+    }
+
+    public List<Users> getUsers() {
+        return userRepository.findAll();
+    }
+
+    public List<LeaveTypes> getLeaveTypes() {
+        return typeRepository.findAll();
+    }
+
+    public void deleteLeaveType(Long id) {
+        typeRepository.deleteById(Math.toIntExact(id));
+
     }
 
 }

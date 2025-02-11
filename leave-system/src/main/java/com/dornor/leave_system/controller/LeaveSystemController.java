@@ -44,8 +44,24 @@ public class LeaveSystemController {
 
     }
 
-    @PostMapping("/leave-typs")
+    @PostMapping("/leave-types")
     public void createLeaveTypes(@RequestBody LeaveTypes leave_types) {
         leaveSystemService.saveLeaveType(leave_types);
+    }
+
+    @GetMapping("/user")
+    public List<Users> getUsers() {
+        return leaveSystemService.getUsers();
+    }
+
+    @GetMapping("/leave-types")
+    public List<LeaveTypes> getLeaveTypes() {
+        return leaveSystemService.getLeaveTypes();
+    }
+
+    @DeleteMapping("/leave-types/{id}")
+    public void deleteLeaveTypes(@PathVariable Long id) {
+
+        leaveSystemService.deleteLeaveType(id);
     }
 }
