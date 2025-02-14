@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms'; 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -17,6 +17,8 @@ import { GraphComponent } from './components/graph/graph.component';
 import { LeaveDetailsComponent } from './components/leave-details/leave-details.component';
 import { MatTableModule } from '@angular/material/table';
 import { LatestLeavesComponent } from './components/latest-leaves/latest-leaves.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,10 @@ import { LatestLeavesComponent } from './components/latest-leaves/latest-leaves.
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    MatTableModule
+    MatTableModule,
+    HttpClientModule,
+    CommonModule,
+    FormsModule
   ],
   providers: [
     provideAnimationsAsync()

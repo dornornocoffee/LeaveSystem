@@ -1,16 +1,15 @@
 package com.dornor.leave_system.services;
 
-import com.dornor.leave_system.entity.LeaveBalances;
-import com.dornor.leave_system.entity.LeaveRequest;
-import com.dornor.leave_system.entity.LeaveTypes;
-import com.dornor.leave_system.entity.Users;
+import com.dornor.leave_system.entity.*;
 import com.dornor.leave_system.repository.BalanceRepository;
 import com.dornor.leave_system.repository.RequestRepository;
 import com.dornor.leave_system.repository.TypeRepository;
 import com.dornor.leave_system.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LeaveSystemService {
@@ -61,6 +60,23 @@ public class LeaveSystemService {
 
     public void saveLeaveBalances(LeaveBalances leaveBalances) {
         balanceRepository.save(leaveBalances);
+    }
+
+    public Optional<Users> getUsersById(Long userId) {
+        return userRepository.findById(userId);
+    }
+
+    @Transactional
+    public void approveLeaveRequest(Long leaveRequestId, String status) {
+        LeaveRequest leaveRequest = requestRepository.findById(Math.toIntExact(leaveRequestId))
+                .orElseThrow(() -> new RuntimeException("Leave request not found"));
+
+        if (status == null || (!status.equals("APPROVED") && !status.equals("REJECTED"))) {
+            throw new IllegalArgumentException("Invalid status value");
+        }
+
+        leaveRequest.setStatus(LeaveStatus.valueOf(status));
+        requestRepository.save(leaveRequest);
     }
 
 }

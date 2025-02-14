@@ -2,26 +2,29 @@
     <div class="form-container">
       <h2>แบบฟอร์มขอลางาน</h2>
       <label>ประเภทการลา</label>
-      <select>
-        <option>เลือกประเภทการลา</option>
+      <select [(ngModel)]="leaveRequest.leaveType.id">
+        <option value="">เลือกประเภทการลา</option>
+        <option value="1">ลากิจ</option>
+        <option value="2">ลาป่วย</option>
+        <option value="3">ลาพักร้อน</option>
       </select>
       
       <div class="date-container">
         <div>
           <label>วันที่เริ่มต้น</label>
-          <input type="date">
+          <input type="date" [(ngModel)]="leaveRequest.startDate">
         </div>
         <div>
           <label>วันที่สิ้นสุด</label>
-          <input type="date">
+          <input type="date" [(ngModel)]="leaveRequest.endDate">
         </div>
       </div>
       <label>เหตุผลการลา</label>
-      <textarea></textarea>
+      <textarea [(ngModel)]="leaveRequest.reason"></textarea>
 
       <div class="button-container">
-        <button class="cancel">ยกเลิก</button>
-        <button class="submit">ส่งคำขอลา</button>
+        <button class="cancel" (click)="cancelForm()">ยกเลิก</button>
+        <button class="submit" (click)="submitForm()">ส่งคำขอลา</button>
       </div>
     </div>
   </div>

@@ -1,16 +1,15 @@
 package com.dornor.leave_system.controller;
 
-import com.dornor.leave_system.entity.LeaveBalances;
-import com.dornor.leave_system.entity.LeaveRequest;
-import com.dornor.leave_system.entity.LeaveTypes;
-import com.dornor.leave_system.entity.Users;
+import com.dornor.leave_system.entity.*;
 import com.dornor.leave_system.services.LeaveSystemService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin()
 public class LeaveSystemController {
     private final LeaveSystemService leaveSystemService;
 
@@ -29,9 +28,9 @@ public class LeaveSystemController {
     }
 
     //for admin
-    @PutMapping("/leave-requests/{id}")
-    public void updateRequests(@PathVariable int id, @RequestBody LeaveRequest leave_request) {
-
+    @PutMapping("/leave-requests/{id}/status")
+    public void updateRequests(@PathVariable Long id,@RequestParam("status") String status) {
+        leaveSystemService.approveLeaveRequest(id, status);
     }
 
     @GetMapping("/leave-balances/{id}")
@@ -69,5 +68,10 @@ public class LeaveSystemController {
     @PostMapping("/leave-balances")
     public void createLeaveBalances(@RequestBody LeaveBalances leave_balances) {
         leaveSystemService.saveLeaveBalances(leave_balances);
+    }
+
+    @GetMapping("/user/{id}")
+    public Optional<Users> getUser(@PathVariable Long id) {
+        return leaveSystemService.getUsersById(id);
     }
 }

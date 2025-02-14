@@ -1,11 +1,11 @@
 <div class="leave-approval-card">
     <h2>รายการขออนุมัติการลา</h2>
-    <p class="subtext">รายการที่รอการอนุมัติทั้งหมด 2 รายการ</p>
+    <p class="subtext">รายการที่รอการอนุมัติทั้งหมด {{ pendingLeaves.length }} รายการ</p>
   
-    <div class="card">
+    <div class="card" *ngFor="let leave of pendingLeaves">
       <div class="header">
-        <h3>สมชาย ใจดี</h3>
-        <p>ฝ่ายพัฒนาระบบ</p>
+        <h3>{{ leave.user.username }}</h3>
+        <p>{{ leave.user.department }}</p>
         <span class="status pending">รออนุมัติ</span>
       </div>
   
@@ -13,29 +13,29 @@
         <div class="row">
           <div class="col">
             <strong>ประเภทการลา</strong>
-            <p>ลาพักร้อน</p>
+            <p>{{ leave.leaveType.name }}</p>
           </div>
           <div class="col">
             <strong>จำนวนวัน</strong>
-            <p>2 วัน</p>
+            <p>{{ calculateDays(leave.startDate, leave.endDate) }} วัน</p>
           </div>
         </div>
   
         <div class="row">
           <div class="col">
             <strong>วันที่เริ่มต้น</strong>
-            <p>2025-02-15</p>
+            <p>{{ leave.startDate }}</p>
           </div>
           <div class="col">
             <strong>วันที่สิ้นสุด</strong>
-            <p>2025-02-16</p>
+            <p>{{ leave.endDate }}</p>
           </div>
         </div>
   
         <div class="row">
           <div class="col full-width">
             <strong>เหตุผลการลา</strong>
-            <p>พักผ่อนกับครอบครัว</p>
+            <p>{{ leave.reason }}</p>
           </div>
         </div>
   
@@ -46,8 +46,8 @@
       </div>
   
       <div class="actions">
-        <button class="reject">ไม่อนุมัติ</button>
-        <button class="approve">อนุมัติ</button>
+        <button class="reject" (click)="cancelLeave(leave.id)">ไม่อนุมัติ</button>
+        <button class="approve" (click)="approveLeave(leave.id)">อนุมัติ</button>
       </div>
     </div>
   </div>
