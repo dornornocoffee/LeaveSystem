@@ -1,0 +1,20 @@
+.card {
+    background: #fff;
+    padding: 20px;
+    margin: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .status {
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+  }
+  .pending {
+    background-color: #ffeeba;
+    color: #856404;
+  }
+  .approved {
+    background-color: #d4edda;
+    color: #155724;
+  }

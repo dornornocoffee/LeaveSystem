@@ -4,3 +4,27 @@ body {
     padding: 0;
     height: 100vh;
   }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  .leave-button {
+    background: #007bff;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .leave-button:hover {
+    background: #0056b3;
+  }
+  

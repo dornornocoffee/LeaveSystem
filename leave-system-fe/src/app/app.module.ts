@@ -15,6 +15,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { GraphComponent } from './components/graph/graph.component';
 import { LeaveDetailsComponent } from './components/leave-details/leave-details.component';
+import { MatTableModule } from '@angular/material/table';
+import { LatestLeavesComponent } from './components/latest-leaves/latest-leaves.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { LeaveDetailsComponent } from './components/leave-details/leave-details.
     AdminComponent,
     GraphComponent,
     LeaveDetailsComponent,
+    LatestLeavesComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import { LeaveDetailsComponent } from './components/leave-details/leave-details.
     MatTabsModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatTableModule
   ],
   providers: [
     provideAnimationsAsync()

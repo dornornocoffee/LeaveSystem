@@ -1,31 +1,28 @@
-<div class="form-container">
-    <h2>แบบฟอร์มขอลางาน</h2>
-  
-    <label for="leaveType">ประเภทการลา</label>
-    <select id="leaveType">
-      <option>เลือกประเภทการลา</option>
-      <option>ลาพักร้อน</option>
-      <option>ลาป่วย</option>
-      <option>ลากิจ</option>
-    </select>
-  
-    <div class="date-container">
-      <div>
-        <label for="startDate">วันที่เริ่มต้น</label>
-        <input type="date" id="startDate">
+<div class="main-container">
+    <div class="form-container">
+      <h2>แบบฟอร์มขอลางาน</h2>
+      <label>ประเภทการลา</label>
+      <select>
+        <option>เลือกประเภทการลา</option>
+      </select>
+      
+      <div class="date-container">
+        <div>
+          <label>วันที่เริ่มต้น</label>
+          <input type="date">
+        </div>
+        <div>
+          <label>วันที่สิ้นสุด</label>
+          <input type="date">
+        </div>
       </div>
-      <div>
-        <label for="endDate">วันที่สิ้นสุด</label>
-        <input type="date" id="endDate">
+      <label>เหตุผลการลา</label>
+      <textarea></textarea>
+
+      <div class="button-container">
+        <button class="cancel">ยกเลิก</button>
+        <button class="submit">ส่งคำขอลา</button>
       </div>
-    </div>
-  
-    <label for="reason">เหตุผลการลา</label>
-    <textarea id="reason"></textarea>
-  
-    <div class="button-container">
-      <button class="cancel">ยกเลิก</button>
-      <button class="submit">ส่งคำขอลา</button>
     </div>
   </div>
   

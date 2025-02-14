@@ -8,6 +8,7 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class AppComponent {
   selectedIndex = 0;
+  title: any;
 
   constructor(private router: Router) {
     // Sync tab index with URL

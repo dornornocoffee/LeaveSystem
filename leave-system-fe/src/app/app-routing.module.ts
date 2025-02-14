@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'request-leave', component: RequestLeaveComponent },
   { path: 'leave-history', component: LeaveHistoryComponent },
-  { path: 'submit-form', component: AdminComponent },
+  { path: 'leave-approval', component: AdminComponent },
 ];
 
 @NgModule({

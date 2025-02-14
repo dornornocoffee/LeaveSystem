@@ -1,0 +1,38 @@
+<div class="card">
+    <h3>รายการลาล่าสุด</h3>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      
+      <!-- Date Column -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> วันที่ </th>
+        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+      </ng-container>
+      
+      <!-- Type Column -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> ประเภท </th>
+        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+      </ng-container>
+      
+      <!-- Days Column -->
+      <ng-container matColumnDef="days">
+        <th mat-header-cell *matHeaderCellDef> จำนวนวัน </th>
+        <td mat-cell *matCellDef="let element"> {{element.days}} วัน</td>
+      </ng-container>
+      
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> สถานะ </th>
+        <td mat-cell *matCellDef="let element">
+          <span class="status" [ngClass]="{'pending': element.status === 'รออนุมัติ', 'approved': element.status === 'อนุมัติแล้ว'}">
+            {{element.status}}
+          </span>
+        </td>
+      </ng-container>
+      
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  

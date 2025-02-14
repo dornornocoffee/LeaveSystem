@@ -1,0 +1,83 @@
+.leave-approval-card {
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .subtext {
+    color: gray;
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+  
+  .card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+  
+  .status {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+  }
+  
+  .pending {
+    background-color: #fdf4c5;
+    color: #8d7400;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+  }
+  
+  .col {
+    flex: 1;
+  }
+  
+  .full-width {
+    flex: 100%;
+  }
+  
+  .comment-section textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+  }
+  
+  button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .reject {
+    background: #ff4d4d;
+    color: white;
+  }
+  
+  .approve {
+    background: #28a745;
+    color: white;
+  }
+  
