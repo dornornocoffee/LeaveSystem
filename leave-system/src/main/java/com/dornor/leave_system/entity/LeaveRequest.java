@@ -31,8 +31,9 @@ public class LeaveRequest {
     @Column(name = "end_date", nullable = false)
     private LocalDate endDate;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private boolean status;
+    private LeaveStatus status;
 
     @Column(columnDefinition = "TEXT")
     private String reason;

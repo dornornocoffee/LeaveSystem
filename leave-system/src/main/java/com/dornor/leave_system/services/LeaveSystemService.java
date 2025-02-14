@@ -11,7 +11,6 @@ import com.dornor.leave_system.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class LeaveSystemService {
@@ -31,8 +30,8 @@ public class LeaveSystemService {
         return requestRepository.findAll();
     }
 
-    public List<LeaveBalances> getRemainingLeaves(Users user) {
-        return balanceRepository.findByUserId(user.getId());
+    public List<LeaveBalances> getRemainingLeaves(int user) {
+        return balanceRepository.findByUserId((long) user);
     }
 
     public void saveLeave(LeaveRequest leaveRequest) {
@@ -58,6 +57,10 @@ public class LeaveSystemService {
     public void deleteLeaveType(Long id) {
         typeRepository.deleteById(Math.toIntExact(id));
 
+    }
+
+    public void saveLeaveBalances(LeaveBalances leaveBalances) {
+        balanceRepository.save(leaveBalances);
     }
 
 }

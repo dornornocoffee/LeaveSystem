@@ -1,5 +1,6 @@
 package com.dornor.leave_system.controller;
 
+import com.dornor.leave_system.entity.LeaveBalances;
 import com.dornor.leave_system.entity.LeaveRequest;
 import com.dornor.leave_system.entity.LeaveTypes;
 import com.dornor.leave_system.entity.Users;
@@ -33,9 +34,9 @@ public class LeaveSystemController {
 
     }
 
-    @GetMapping("/leave-balances")
-    public String leaveBalances() {
-        return "leave-balances";
+    @GetMapping("/leave-balances/{id}")
+    public List<LeaveBalances> leaveBalances(@PathVariable int id) {
+        return leaveSystemService.getRemainingLeaves(id);
     }
 
     @PostMapping("/user")
@@ -63,5 +64,10 @@ public class LeaveSystemController {
     public void deleteLeaveTypes(@PathVariable Long id) {
 
         leaveSystemService.deleteLeaveType(id);
+    }
+
+    @PostMapping("/leave-balances")
+    public void createLeaveBalances(@RequestBody LeaveBalances leave_balances) {
+        leaveSystemService.saveLeaveBalances(leave_balances);
     }
 }
