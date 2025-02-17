@@ -3,7 +3,7 @@
 This project is a Leave Management System consisting of three main components:
 1. **Database & Dependencies** - Managed using Docker Compose.
 2. **Backend** - A Spring Boot application located in `LeaveSystem\leave-system`.
-3. **Frontend** - An Angular application located in `leave-system-fe`.
+3. **Frontend** - An Angular application located in `LeaveSystem\leave-system-fe`.
 
 ## How to Run the Project
 
@@ -24,7 +24,7 @@ This will start the Spring Boot application on **`http://localhost:8080`**.
 ### 3️ Run the Angular Frontend
 Navigate to the frontend folder and start the Angular application:
 ```sh
-cd leave-system-fe
+cd LeaveSystem/leave-system-fe
 npm install 
 npm start
 ```
