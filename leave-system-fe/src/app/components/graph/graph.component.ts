@@ -17,14 +17,13 @@ export class GraphComponent implements AfterViewInit {
       const vacationLeave = data.reduce((total, user) => total + user.vacationLeave, 0);
       const personalLeave = data.reduce((total, user) => total + user.personalLeave, 0);
 
-      // Now initialize the chart with the data
       new Chart("leaveChart", {
         type: 'bar',
         data: {
           labels: ['ลาป่วย', 'ลาพักร้อน', 'ลากิจ'],
           datasets: [{
             label: 'จำนวนวัน',
-            data: [sickLeave, vacationLeave, personalLeave], // Use the processed data here
+            data: [sickLeave, vacationLeave, personalLeave],
             backgroundColor: 'blue'
           }]
         },

@@ -10,10 +10,20 @@ export class LeaveDetailsComponent implements OnInit {
    
   displayedColumns: string[] = ['name', 'department', 'sickLeave', 'vacationLeave', 'personalLeave', 'total'];
   dataSource:any[] = [];
+  filteredLeaves: any[] = [];
+
+  selectedMonth: string = '';
+  selectedDepartment: string = '';
 
   constructor(private leaveService: LeaveServiceService) {}
 
   ngOnInit(): void {
+    this.loadInfo()
+   }
+
+  
+
+  loadInfo(): void{
     this.leaveService.getHistoryDetail().subscribe(
       (leaves) => {
         this.dataSource = leaves;
@@ -22,7 +32,6 @@ export class LeaveDetailsComponent implements OnInit {
         console.error('Error fetching leaves:', error);
       }
     );
-      
   }
 
 }

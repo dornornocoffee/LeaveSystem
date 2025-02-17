@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
+import * as XLSX from 'xlsx'
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ import { map, Observable } from 'rxjs';
 export class LeaveServiceService {
 
   http = inject(HttpClient)
+  fileName= 'TotalLeave.xlsx'
 
   getLeftDay(): Observable<number> {
     const url = `http://localhost:8080/api/user/2`;
@@ -133,6 +135,18 @@ export class LeaveServiceService {
   cancelReq(id: number): Observable<any> {
     const url = `http://localhost:8080/api/leave-requests/${id}/status?status=REJECTED`;
     return this.http.put(url, null);
+  }
+
+  exportexcel(): void
+  {
+    let element = document.getElementById('excel-table');
+    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+ 
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+ 
+    XLSX.writeFile(wb, this.fileName);
+ 
   }
   
 }

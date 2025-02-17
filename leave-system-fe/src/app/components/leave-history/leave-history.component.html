@@ -5,14 +5,14 @@
             <h2>สถิติการลาประจำเดือน</h2>
             <p>ข้อมูลการลาของพนักงานทั้งหมด</p>
           </div>
-          <button class="export-btn">⬇ Export Excel</button>
+          <button class="export-btn" (click)="exportExcel()">⬇ Export Excel</button>
         </div>
       
         <div class="filter-card">
           <div class="input-group">
             <label for="month">เลือกเดือน</label>
             <div class="input-wrapper">
-              <input type="month" id="month" value="2024-01">
+              <input type="month" id="month">
             </div>
           </div>
       
@@ -20,9 +20,9 @@
             <label for="department">แผนก</label>
             <div class="input-wrapper">
               <select id="department">
-                <option>ทั้งหมด</option>
-                <option>แผนก IT</option>
-                <option>แผนก CEO</option>
+                <option value="">ทั้งหมด</option>
+                <option value="HR">แผนก HR</option>
+                <option value="CEO">แผนก CEO</option>
               </select>
             </div>
           </div>

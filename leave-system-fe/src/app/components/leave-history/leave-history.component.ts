@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { LeaveServiceService } from '../../services/leave-service.service';
 
 @Component({
   selector: 'app-leave-history',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrl: './leave-history.component.scss'
 })
 export class LeaveHistoryComponent {
+
+  leaveService = inject(LeaveServiceService)
+  selectedMonth=''
+  selectedDepartment=''
+
+  exportExcel(): void {
+    this.leaveService.exportexcel();
+  }
 
 }
