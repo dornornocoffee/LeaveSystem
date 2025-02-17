@@ -11,7 +11,7 @@ export class RequestLeaveComponent {
 
   leaveRequest = {
     user:{
-      id:2
+      id:1
     },
     leaveType: {
       id:0

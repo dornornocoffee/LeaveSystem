@@ -14,7 +14,7 @@ export class LeaveServiceService {
   selectedDepartment= ''
 
   getLeftDay(): Observable<number> {
-    const url = `http://localhost:8080/api/user/2`;
+    const url = `http://localhost:8080/api/user/1`;
     
     return this.http.get<{ leftCount: number }>(url).pipe(
       map(response => response.leftCount)
