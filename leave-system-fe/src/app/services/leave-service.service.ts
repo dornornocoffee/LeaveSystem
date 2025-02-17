@@ -10,6 +10,8 @@ export class LeaveServiceService {
 
   http = inject(HttpClient)
   fileName= 'TotalLeave.xlsx'
+  selectedMonth = ''
+  selectedDepartment= ''
 
   getLeftDay(): Observable<number> {
     const url = `http://localhost:8080/api/user/2`;
@@ -73,6 +75,7 @@ export class LeaveServiceService {
               leaveSummary.set(username, {
                 name: username,
                 department: department,
+                startDate: leave.startDate,
                 sickLeave: 0,
                 vacationLeave: 0,
                 personalLeave: 0,
@@ -147,6 +150,19 @@ export class LeaveServiceService {
  
     XLSX.writeFile(wb, this.fileName);
  
+  }
+
+  departmentSubject = new BehaviorSubject<string>('');
+  monthSubject = new BehaviorSubject<string>('');
+  selectedDepartment$ = this.departmentSubject.asObservable();
+  selectedMonth$ = this.monthSubject.asObservable();
+
+  setDepartment(department: string) {
+    this.departmentSubject.next(department);
+  }
+
+  setMonth(month: any) {
+    this.monthSubject.next(month)
   }
   
 }

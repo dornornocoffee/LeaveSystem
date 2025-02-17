@@ -1,7 +1,10 @@
 <div class="card">
+    <h3>สรุปการลาแยกตามประเภท</h3>
+    <canvas id="leaveChart"></canvas>
+
     <h3>รายละเอียดการลารายบุคคล</h3>
-    <h5 *ngIf="dataSource.length==0">ไม่พบข้อมูลการลา</h5>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource.length!=0" id="excel-table">
+    <h5 *ngIf="filteredLeaves.length==0">ไม่พบข้อมูลการลา</h5>
+    <table mat-table [dataSource]="filteredLeaves" class="mat-elevation-z8" *ngIf="filteredLeaves.length!=0" id="excel-table">
   
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> ชื่อ-นามสกุล </th>

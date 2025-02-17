@@ -16,4 +16,14 @@ export class LeaveHistoryComponent {
     this.leaveService.exportexcel();
   }
 
+  setMonth() {
+    this.leaveService.setMonth(this.selectedMonth)
+  }
+
+  setDepartment(){
+    this.leaveService.setDepartment(this.selectedDepartment)
+  }
+  
+
+
 }

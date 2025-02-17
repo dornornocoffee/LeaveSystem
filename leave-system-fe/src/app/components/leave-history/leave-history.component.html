@@ -12,14 +12,14 @@
           <div class="input-group">
             <label for="month">เลือกเดือน</label>
             <div class="input-wrapper">
-              <input type="month" id="month">
+              <input type="month" id="month" [(ngModel)]="selectedMonth" (change)="setMonth()">
             </div>
           </div>
       
           <div class="input-group">
             <label for="department">แผนก</label>
             <div class="input-wrapper">
-              <select id="department">
+              <select id="department" [(ngModel)]="selectedDepartment" (change)="setDepartment()">
                 <option value="">ทั้งหมด</option>
                 <option value="HR">แผนก HR</option>
                 <option value="CEO">แผนก CEO</option>
@@ -27,8 +27,6 @@
             </div>
           </div>
         </div>
-    
-        <app-graph></app-graph>
         <app-leave-details></app-leave-details>
       </div>    
 </div>
