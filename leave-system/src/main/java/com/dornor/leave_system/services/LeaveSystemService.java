@@ -29,8 +29,8 @@ public class LeaveSystemService {
         return requestRepository.findAll();
     }
 
-    public List<LeaveBalances> getRemainingLeaves(int user) {
-        return balanceRepository.findByUserId((long) user);
+    public List<LeaveBalances> getRemainingLeaves(Long id) {
+        return balanceRepository.findByUserId(id);
     }
 
     public void saveLeave(LeaveRequest leaveRequest) {
@@ -54,8 +54,7 @@ public class LeaveSystemService {
     }
 
     public void deleteLeaveType(Long id) {
-        typeRepository.deleteById(Math.toIntExact(id));
-
+        typeRepository.deleteById(id);
     }
 
     public void saveLeaveBalances(LeaveBalances leaveBalances) {
@@ -68,7 +67,7 @@ public class LeaveSystemService {
 
     @Transactional
     public void approveLeaveRequest(Long leaveRequestId, String status) {
-        LeaveRequest leaveRequest = requestRepository.findById(Math.toIntExact(leaveRequestId))
+        LeaveRequest leaveRequest = requestRepository.findById(leaveRequestId)
                 .orElseThrow(() -> new RuntimeException("Leave request not found"));
 
         if (status == null || (!status.equals("APPROVED") && !status.equals("REJECTED"))) {
