@@ -1,0 +1,47 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36" version="26.0.15">
+  <diagram name="Page-1" id="SCdIFRZWMQIiU2iL0v0j">
+    <mxGraphModel dx="1235" dy="614" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PchsAwVY9sU8l2hla9Lt-1" value="Static server" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="170" width="200" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="PchsAwVY9sU8l2hla9Lt-4" value="&lt;b&gt;leave-system-fe&lt;/b&gt;&lt;div&gt;Angular 18&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="PchsAwVY9sU8l2hla9Lt-1">
+          <mxGeometry x="45" y="82.5" width="110" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="PchsAwVY9sU8l2hla9Lt-2" value="Backend Server" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="170" width="390" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="PchsAwVY9sU8l2hla9Lt-5" value="&lt;b&gt;LeaveSystemService&lt;/b&gt;&lt;div&gt;Spring Boot 3.3.9&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="PchsAwVY9sU8l2hla9Lt-2">
+          <mxGeometry x="230" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="PchsAwVY9sU8l2hla9Lt-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="PchsAwVY9sU8l2hla9Lt-2" source="PchsAwVY9sU8l2hla9Lt-10" target="PchsAwVY9sU8l2hla9Lt-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PchsAwVY9sU8l2hla9Lt-10" value="&lt;b&gt;LeaveSystemController&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="PchsAwVY9sU8l2hla9Lt-2">
+          <mxGeometry x="40" y="80" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="PchsAwVY9sU8l2hla9Lt-3" value="&lt;b&gt;leavesystemdb&lt;/b&gt;&lt;div&gt;Docker&lt;/div&gt;&lt;div&gt;PostgreSQL&lt;/div&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="810" y="225" width="90" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="PchsAwVY9sU8l2hla9Lt-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="PchsAwVY9sU8l2hla9Lt-5" target="PchsAwVY9sU8l2hla9Lt-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PchsAwVY9sU8l2hla9Lt-14" value="JPA read/write" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="PchsAwVY9sU8l2hla9Lt-8">
+          <mxGeometry x="0.0966" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PchsAwVY9sU8l2hla9Lt-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="PchsAwVY9sU8l2hla9Lt-4" target="PchsAwVY9sU8l2hla9Lt-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PchsAwVY9sU8l2hla9Lt-15" value="API" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="PchsAwVY9sU8l2hla9Lt-12">
+          <mxGeometry x="0.1051" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

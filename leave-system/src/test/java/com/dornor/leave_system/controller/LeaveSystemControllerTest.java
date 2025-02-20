@@ -20,6 +20,7 @@ import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -102,7 +103,7 @@ public class LeaveSystemControllerTest {
         }
 
         @Test
-        void updateLeaveRequestStatus_ShouldUpdateStatus() throws Exception {
+        void updateLeaveRequestStatus_ShouldUpdateToApproved() throws Exception {
                 mockMvc.perform(put("/api/leave-requests/{id}/status", testLeaveRequest.getId())
                                 .param("status", "APPROVED"))
                                 .andExpect(status().isOk());
@@ -111,20 +112,49 @@ public class LeaveSystemControllerTest {
         }
 
         @Test
+        void updateLeaveRequestStatus_ShouldUpdateToPending() throws Exception {
+                mockMvc.perform(put("/api/leave-requests/{id}/status", testLeaveRequest.getId())
+                                .param("status", "PENDING"))
+                                .andExpect(status().isOk());
+
+                verify(leaveSystemService).approveLeaveRequest(eq(testLeaveRequest.getId()), eq("PENDING"));
+        }
+
+        @Test
+        void updateLeaveRequestStatus_ShouldUpdateToRejected() throws Exception {
+                mockMvc.perform(put("/api/leave-requests/{id}/status", testLeaveRequest.getId())
+                                .param("status", "REJECTED"))
+                                .andExpect(status().isOk());
+
+                verify(leaveSystemService).approveLeaveRequest(eq(testLeaveRequest.getId()), eq("REJECTED"));
+        }
+
+        @Test
         void updateLeaveRequestStatus_WithInvalidStatus_ShouldReturnBadRequest() throws Exception {
                 doThrow(new IllegalArgumentException("Invalid status value"))
-                                .when(leaveSystemService).approveLeaveRequest(1L, "INVALID_STATUS");
+                                .when(leaveSystemService)
+                                .approveLeaveRequest(eq(testLeaveRequest.getId()), eq("INVALID_STATUS"));
 
-                mockMvc.perform(put("/api/leave-requests/{id}/status", 1L)
+                mockMvc.perform(put("/api/leave-requests/{id}/status", testLeaveRequest.getId())
                                 .param("status", "INVALID_STATUS")
                                 .contentType(MediaType.APPLICATION_JSON))
                                 .andExpect(status().isBadRequest());
         }
 
         @Test
+        void updateLeaveRequestStatus_WithNullStatus_ShouldReturnBadRequest() throws Exception {
+                doThrow(new IllegalArgumentException("Invalid status value"))
+                                .when(leaveSystemService).approveLeaveRequest(eq(testLeaveRequest.getId()), isNull());
+
+                mockMvc.perform(put("/api/leave-requests/{id}/status", testLeaveRequest.getId())
+                                .contentType(MediaType.APPLICATION_JSON)) // No status param passed
+                                .andExpect(status().isBadRequest());
+        }
+
+        @Test
         void updateLeaveRequestStatus_WithNonExistentId_ShouldReturnNotFound() throws Exception {
                 doThrow(new RuntimeException("Leave request not found"))
-                                .when(leaveSystemService).approveLeaveRequest(999L, "APPROVED");
+                                .when(leaveSystemService).approveLeaveRequest(eq(999L), eq("APPROVED"));
 
                 mockMvc.perform(put("/api/leave-requests/{id}/status", 999L)
                                 .param("status", "APPROVED")
@@ -132,6 +162,40 @@ public class LeaveSystemControllerTest {
                                 .andExpect(status().isNotFound());
         }
 
+        @Test
+        void updateLeaveRequestStatus_WithNonExistentEnumValue_ShouldReturnBadRequest() throws Exception {
+                doThrow(new IllegalArgumentException("No enum constant LeaveStatus.INVALID_VALUE"))
+                                .when(leaveSystemService)
+                                .approveLeaveRequest(eq(testLeaveRequest.getId()), eq("INVALID_VALUE"));
+
+                mockMvc.perform(put("/api/leave-requests/{id}/status", testLeaveRequest.getId())
+                                .param("status", "INVALID_VALUE")
+                                .contentType(MediaType.APPLICATION_JSON))
+                                .andExpect(status().isBadRequest());
+        }
+
+        @Test
+        void updateLeaveRequestStatus_WithWhitespace_ShouldReturnBadRequest() throws Exception {
+        doThrow(new IllegalArgumentException("Invalid status value"))
+                .when(leaveSystemService).approveLeaveRequest(eq(testLeaveRequest.getId()), eq(" APPROVED "));
+
+        mockMvc.perform(put("/api/leave-requests/{id}/status", testLeaveRequest.getId())
+                        .param("status", " APPROVED ") // Notice the spaces
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+        }
+
+        @Test
+        void updateLeaveRequestStatus_WithLowercaseStatus_ShouldReturnBadRequest() throws Exception {
+        doThrow(new IllegalArgumentException("Invalid status value"))
+                .when(leaveSystemService).approveLeaveRequest(eq(testLeaveRequest.getId()), eq("approved"));
+
+        mockMvc.perform(put("/api/leave-requests/{id}/status", testLeaveRequest.getId())
+                        .param("status", "approved") // Lowercase
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+        }
+        
         @Test
         void getLeaveTypes_ShouldReturnListOfLeaveTypes() throws Exception {
                 List<LeaveTypes> leaveTypes = Arrays.asList(testLeaveType);

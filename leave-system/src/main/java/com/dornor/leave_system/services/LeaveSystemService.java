@@ -8,6 +8,7 @@ import com.dornor.leave_system.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,13 +70,23 @@ public class LeaveSystemService {
     public void approveLeaveRequest(Long leaveRequestId, String status) {
         LeaveRequest leaveRequest = requestRepository.findById(leaveRequestId)
                 .orElseThrow(() -> new RuntimeException("Leave request not found"));
-
-        if (status == null || (!status.equals("APPROVED") && !status.equals("REJECTED"))) {
+    
+        boolean isValidStatus = false;
+        try {
+            isValidStatus = EnumSet.of(LeaveStatus.APPROVED, LeaveStatus.REJECTED, LeaveStatus.PENDING)
+                    .contains(LeaveStatus.valueOf(status));
+        } catch (Exception e) {
+            System.out.println("Enum parsing failed for status: " + status); // Debugging purpose
+        }
+    
+        if (status == null || !isValidStatus) {
             throw new IllegalArgumentException("Invalid status value");
         }
-
+    
         leaveRequest.setStatus(LeaveStatus.valueOf(status));
         requestRepository.save(leaveRequest);
     }
+    
+
 
 }
